@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit product</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+
+        <input value="{{ product.name }}" type="text" name="name" placeholder="Name">
+        <input value="{{ product.price }}" type="number" name="price" placeholder="Price">
+        <select name="company">
+            {% for company in companies %}
+            <option value="{{ company.id }}" {% if company.id == product.company_id %} selected {% endif %}>{{ company }}</option>
+            {% endfor %}
+        </select>
+
+        <button>Save product</button>
+    </form>
+</body>
+</html>
